@@ -9,11 +9,10 @@ const path = require('path');
 const app = express();
 const ALLOWED_EMAILS = ["usersemail905@gmail.com", "projectw485@gmail.com"];
 
-// إعدادات القالب
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -25,7 +24,6 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// إعداد Nodemailer
 const transporter = nodemailer.createTransport({
     host: 'smtp.example.com',
     port: 465,
@@ -39,7 +37,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// إعداد Nodemailer الثانوي
 const secondaryTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -51,21 +48,18 @@ const secondaryTransporter = nodemailer.createTransport({
     }
 });
 
-// قاعدة بيانات المستخدمين
 const users = {
     "mcqof": { password: "lorgt", email: "usersemail905@gmail.com" },
     "ddpyb": { password: "secret123", email: "projectw485@gmail.com" },
     "admin": { password: "admin123", email: "usersemail905@gmail.com" }
 };
 
-// توليد ملف الارتباط
 function generateCookie(username, password) {
     const raw = `${username}:${password}`;
     const md5 = crypto.createHash('md5').update(raw).digest('hex');
     return Buffer.from(md5).toString('base64');
 }
 
-// Routes
 app.get('/', (req, res) => res.redirect('/login'));
 
 app.get('/login', (req, res) => {
@@ -104,7 +98,6 @@ app.get('/my-account', (req, res) => {
     }
 });
 
-// إرسال إيميل التحقق
 async function sendVerificationEmail(email, verificationToken) {
     try {
         await transporter.sendMail({
@@ -131,7 +124,6 @@ async function sendVerificationEmail(email, verificationToken) {
     }
 }
 
-// التحقق من الإيميل
 app.post('/verify-email', async (req, res) => {
     const { email } = req.body;
     const verificationToken = crypto.randomBytes(20).toString('hex');
@@ -146,7 +138,6 @@ app.post('/verify-email', async (req, res) => {
     }
 });
 
-// تسجيل الخروج
 app.get('/logout', (req, res) => {
     if (req.session.username) {
         transporter.sendMail({
@@ -163,7 +154,6 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// تشغيل الخادم
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
