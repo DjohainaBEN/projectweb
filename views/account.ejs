@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-dark-petrol text-white">
+                    <h4><i class="bi bi-person-circle"></i> My Account</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-light">
+                        <h5>Welcome</h5>
+                        
+                    </div>
+                    
+                    <h5 class="mb-3">Update Email</h5>
+                    <form action="/update-email" method="POST">
+                        <div class="mb-3">
+                            <input type="email" name="email" value="<%= user.email %>" 
+                                   class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-dark-petrol">Update Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

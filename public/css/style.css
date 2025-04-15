@@ -1,0 +1,49 @@
+:root {
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --medium-gray: #E0E0E0;
+    --dark-gray: #616161;
+    --dark-green-black: #1A3A32;
+    --light-turquoise: #80CBC4;
+    --dark-petrol: #00695C;
+    --pale-blue-gray: #B0BEC5;
+    --sandy-beige: #D7CCC8;
+    --pale-gold: #FFE082;
+    --pale-sky-blue: #B3E5FC;
+}
+
+body {
+    background-color: var(--pale-blue-gray);
+    color: var(--dark-green-black);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-dark-petrol {
+    background-color: var(--dark-petrol) !important;
+}
+
+.text-dark-petrol {
+    color: var(--dark-petrol) !important;
+}
+
+.btn-dark-petrol {
+    background-color: var(--dark-petrol);
+    border-color: var(--dark-petrol);
+    color: white;
+}
+
+.btn-dark-petrol:hover {
+    background-color: var(--light-turquoise);
+    border-color: var(--light-turquoise);
+    color: var(--dark-green-black);
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.form-control:focus {
+    border-color: var(--light-turquoise);
+    box-shadow: 0 0 0 0.25rem rgba(128, 203, 196, 0.25);
+}
